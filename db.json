@@ -1,0 +1,35 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "date": "2019-05-12",
+      "note": "income",
+      "amount": 41
+    },
+    {
+      "id": 2,
+      "date": "2019-05-11",
+      "note": "pocket money",
+      "amount": 2
+    },
+    {
+      "id": 3,
+      "date": "2019-05-10",
+      "note": "repayment",
+      "amount": 34
+    },
+    {
+      "id": 4,
+      "date": "2019-05-09",
+      "note": "pocket money",
+      "amount": 2
+    },
+    {
+      "id": 5,
+      "date": "2019-05-08",
+      "note": "income",
+      "amount": 99
+    }
+  ]
+}
+
