@@ -4,6 +4,7 @@ import Record from './record';
 // dataAPI where handles receiving data from API
 import * as dataAPI from '../utils/dataAPI'
 import RecordForm from './recordForm';
+import CashFlow from './cashFlow';
 
 class List extends React.Component {
   // initialize states and bind methods
@@ -90,7 +91,35 @@ class List extends React.Component {
     this.setState({
       records: newRecords
     });  
-  }  
+  }
+
+  /* calculate the amount of total income
+     filter() positive numbers, use reduce() to return value then assign to the accumulator
+  */
+  income() {
+    let income = this.state.records.filter((record) => {
+      return record.amount >= 0;
+    });
+    return income.reduce((prev, curr) => {
+      return prev + Number.parseInt(curr.amount, 0)
+    }, 0)
+  }
+  
+  // calculate the balance number
+  balance() {
+    return this.income() + this.expense();
+  }
+
+  // calculate the amount of total expense, the execution is similar to income(), but filter() negative numbers.
+  expense() {
+    let income = this.state.records.filter((record) => {
+      return record.amount < 0;
+    });
+    return income.reduce((prev, curr) => {
+      return prev + Number.parseInt(curr.amount, 0)
+    }, 0)
+  }
+    
   render() {
     // in order to render status from the RESTful API properly, 
     // declare const for each status, that is, error, isLoaded, and records
@@ -104,7 +133,7 @@ class List extends React.Component {
     } else if (!isLoaded) {
       listComponent =
         <div className="spinner-border text-primary" role="status">
-
+          <span className="sr-only">Loading...</span>
         </div>;
     } else {
       listComponent = (
@@ -138,6 +167,13 @@ class List extends React.Component {
       <div>
         <h2>EveryCent List</h2>
         
+        {/* <CashFlow /> cashFlow.js to calculate the amount and display cash flow */}
+        <div className="row mb-3">
+          <CashFlow text="Income" type="success" amount={this.income()}/>
+          <CashFlow text="Expense" type="danger" amount={this.expense()}/>
+          <CashFlow text="Balance" type="info" amount={this.balance()}/>
+        </div>
+          
         {/* <RecordForm /> recordForm.js for users to create records */}
         <RecordForm handleNewRecord={this.addRecord.bind(this)} />
         {listComponent}
