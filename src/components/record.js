@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as dataAPI from '../utils/dataAPI'
+import * as dataAPI from '../utils/dataAPI';
 
 
 export default class Record extends React.Component {
@@ -10,6 +10,9 @@ export default class Record extends React.Component {
       // default setting of <button>Edit and <button>Cancel is false, 
       edit: false
     };
+    this.date = React.createRef();
+    this.note = React.createRef();
+    this.amount = React.createRef();
   }
   
   // <button>Edit and <button>Cancel onClick
@@ -28,7 +31,7 @@ export default class Record extends React.Component {
   	const updatedRecord = {
       date: this.date.current.value,
       note: this.note.current.value,
-      amount: Number.parseInt(this.amount.current.value, 0)
+      amount: Number.parseFloat(this.amount.current.value)
     };
     
     // only when receives response from the server then update record

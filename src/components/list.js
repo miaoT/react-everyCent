@@ -101,7 +101,7 @@ class List extends React.Component {
       return record.amount >= 0;
     });
     return income.reduce((prev, curr) => {
-      return prev + Number.parseInt(curr.amount, 0)
+      return prev + Number.parseFloat(curr.amount, 0)
     }, 0)
   }
   
@@ -116,7 +116,7 @@ class List extends React.Component {
       return record.amount < 0;
     });
     return income.reduce((prev, curr) => {
-      return prev + Number.parseInt(curr.amount, 0)
+      return prev + Number.parseFloat(curr.amount, 0)
     }, 0)
   }
     
@@ -165,7 +165,7 @@ class List extends React.Component {
     }
     return (
       <div>
-        <h2>EveryCent List</h2>
+        <h2>EveryCent</h2>
         
         {/* <CashFlow /> cashFlow.js to calculate the amount and display cash flow */}
         <div className="row mb-3">

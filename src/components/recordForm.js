@@ -35,7 +35,7 @@ export default class RecordForm extends React.Component {
       date: this.state.date,
       note: this.state.note,
       // convert amount into an integer, not a string
-      amount: Number.parseInt(this.state.amount, 0)
+      amount: Number.parseFloat(this.state.amount)
     };
     
     // create records and update records from List Component
